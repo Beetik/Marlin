@@ -26,7 +26,6 @@
 //  (or not) in a given .cpp file
 //
 
-#undef DEBUG_SECTION
 #undef DEBUG_PRINT_P
 #undef DEBUG_ECHO_START
 #undef DEBUG_ERROR_START
@@ -54,10 +53,6 @@
 #undef DEBUG_DELAY
 
 #if DEBUG_OUT
-
-  #include "debug_section.h"
-  #define DEBUG_SECTION(N,S,D)    SectionLog N(PSTR(S),D)
-
   #define DEBUG_PRINT_P(P)        serialprintPGM(P)
   #define DEBUG_ECHO_START        SERIAL_ECHO_START
   #define DEBUG_ERROR_START       SERIAL_ERROR_START
@@ -83,10 +78,7 @@
   #define DEBUG_POS               SERIAL_POS
   #define DEBUG_XYZ               SERIAL_XYZ
   #define DEBUG_DELAY(ms)         serial_delay(ms)
-
 #else
-
-  #define DEBUG_SECTION(...)        NOOP
   #define DEBUG_PRINT_P(P)          NOOP
   #define DEBUG_ECHO_START()        NOOP
   #define DEBUG_ERROR_START()       NOOP
@@ -112,7 +104,6 @@
   #define DEBUG_POS(...)            NOOP
   #define DEBUG_XYZ(...)            NOOP
   #define DEBUG_DELAY(...)          NOOP
-
 #endif
 
 #undef DEBUG_OUT
